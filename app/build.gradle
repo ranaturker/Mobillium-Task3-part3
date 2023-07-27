@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.ranaturker.task3_part3'
+    namespace 'com.ranaturker.mobillium_task3_part3'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.ranaturker.task3_part3"
+        applicationId "com.ranaturker.mobillium_task3_part3"
         minSdk 24
         targetSdk 33
         versionCode 1
