@@ -4,6 +4,7 @@
     //button
     <string name="guess">Guess</string>
     <string name="clear">Clear</string>
+    <string name="restart">Restart</string>
     <string name="button_1">1</string>
     <string name="button_2">2</string>
     <string name="button_3">3</string>

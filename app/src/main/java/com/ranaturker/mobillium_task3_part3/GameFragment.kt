@@ -26,7 +26,9 @@ class GameFragment : Fragment() {
     ): View {
         binding = FragmentGameBinding.inflate(layoutInflater)
         bindUI()
-        viewModel.generateRandomValues()
+        if (viewModel.canGenerateNumber){
+            viewModel.generateRandomValues()
+        }
         return binding.root
     }
 
@@ -51,6 +53,11 @@ class GameFragment : Fragment() {
         clearButton.setOnClickListener {
             guessEditText.text.clear() // EditText'teki yazıyı siler
         }
+        restartButton.setOnClickListener {
+            guessEditText.text.clear()
+            viewModel.canGenerateNumber = true
+            viewModel.generateRandomValues()
+        }
 
         // "Rastgele Karakter" metin görünümü için clickListener
         randomCharTextView.setOnClickListener {
@@ -59,6 +66,7 @@ class GameFragment : Fragment() {
             randomCharTextView.text = result
             // Diğer bir Fragment'ta kullanılmak üzere sharedViewModel'daki gizli sayıyı ayarlar
             sharedViewModel.setHiddenNumber(result)
+            viewModel.canGenerateNumber = false
             // NavController kullanarak başka bir Fragment'a (DetailFragment) geçiyor
             findNavController().navigate(GameFragmentDirections.actionGameFragmentToDetailFragment())
         }
@@ -78,6 +86,9 @@ class GameFragment : Fragment() {
         // randomCharTextView'i buna göre günceller
         viewModel.randomChar.observe(viewLifecycleOwner) { randomChar ->
             randomCharTextView.text = randomChar.toString()
+        }
+        sharedViewModel.hiddenNumber.observe(viewLifecycleOwner){ hiddenNumber ->
+            randomCharTextView.text = hiddenNumber
         }
     }
 

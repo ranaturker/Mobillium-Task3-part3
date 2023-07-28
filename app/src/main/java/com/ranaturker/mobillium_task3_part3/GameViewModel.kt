@@ -17,6 +17,8 @@ class GameViewModel : ViewModel() {
     // randomChar adında oluşturulan LiveData türündeki değişken erişime açık hale getiriliyor
     val randomChar: LiveData<Char> get() = _randomChar
 
+    var canGenerateNumber : Boolean = true
+
     // Bu fonksiyon, rastgele bir sayı ve karakter üretir ve ilgili değişkenlere atar
     fun generateRandomValues() {
         // _randomNumber, 1 ile 10 arasında rastgele bir sayıyla güncellenir
