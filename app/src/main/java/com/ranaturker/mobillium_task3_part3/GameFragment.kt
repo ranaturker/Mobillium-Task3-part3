@@ -26,7 +26,7 @@ class GameFragment : Fragment() {
     ): View {
         binding = FragmentGameBinding.inflate(layoutInflater)
         bindUI()
-        if (viewModel.canGenerateNumber){
+        if (viewModel.canGenerateNumber) {
             viewModel.generateRandomValues()
         }
         return binding.root
@@ -61,7 +61,7 @@ class GameFragment : Fragment() {
 
         // "Rastgele Karakter" metin görünümü için clickListener
         randomCharTextView.setOnClickListener {
-            val result = viewModel.randomNumber.value?.toString() ?: "Değer Bulunamadı"
+            val result = viewModel.randomNumber.value?.toString() ?: getString(R.string.invalid_value)
             // ViewModel'dan rastgele sayıyı alarak randomCharTextView'de gösteriyor
             randomCharTextView.text = result
             // Diğer bir Fragment'ta kullanılmak üzere sharedViewModel'daki gizli sayıyı ayarlar
@@ -87,7 +87,7 @@ class GameFragment : Fragment() {
         viewModel.randomChar.observe(viewLifecycleOwner) { randomChar ->
             randomCharTextView.text = randomChar.toString()
         }
-        sharedViewModel.hiddenNumber.observe(viewLifecycleOwner){ hiddenNumber ->
+        sharedViewModel.hiddenNumber.observe(viewLifecycleOwner) { hiddenNumber ->
             randomCharTextView.text = hiddenNumber
         }
     }
@@ -99,9 +99,9 @@ class GameFragment : Fragment() {
             viewModel.checkGuess(guess)
         // Tahminin doğruluğuna göre resultTextView'i buna göre günceller,
         if (isMatch) {
-            binding.resultTextView.text = "Kazandınız!"
+            binding.resultTextView.text = getString(R.string.game_result_won)
         } else {
-            binding.resultTextView.text = "Tekrar Deneyin."
+            binding.resultTextView.text = getString(R.string.game_result_try_again)
         }
     }
 }

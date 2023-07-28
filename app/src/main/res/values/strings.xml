@@ -17,6 +17,9 @@
     <string name="button_0">0</string>
 
     <string name="enter_your_guess">Enter your guess</string>
+    <string name="game_result_won">You won!</string>
+    <string name="game_result_try_again">Try again.</string>
+    <string name="invalid_value">Invalid Value</string>
 
 
 </resources>
